@@ -30,30 +30,20 @@ body {
   content: "";
 }
 .sudoku-container::before {
-  width: 156px;
+  width: 137px;
   border-width: 0 4px;
   border-color: transparent #1f171f transparent #1f171f;
   top: 4px;
-  left: 160px;
+  left: 136px;
   bottom: 4px;
 }
 .sudoku-container::after {
-  height: 156px;
+  height: 129px;
   border-width: 4px 0;
   border-color: #1f171f transparent #1f171f transparent;
   left: 4px;
-  top: 160px;
+  top: 144px;
   right: 4px;
-}
-
-tr:nth-child(1) td:nth-child(3) input,
-tr:nth-child(1) td:nth-child(6) input {
-  margin: 0 10px 0 0;
-}
-
-tr:nth-child(3) input,
-tr:nth-child(6) input {
-  margin: 0 0 10px 0;
 }
 
 .sudoku-container input {
@@ -92,6 +82,11 @@ tr:nth-child(6) input {
 
 .sudoku-container.valid-matrix {
   border-color: #4c9689;
+}
+
+.row {
+  display: flex;
+  height: calc(100% / 9);
 }
 
 #controls {

@@ -1,5 +1,29 @@
-import Sudoku from "./board.js";
+const sudoku = new Sudoku();
 
-let board = new Sudoku(10, 10);
+const board = sudoku.defaultBoard;
 
-console.log(board.makeBoard());
+function solveB() {
+  solve(board);
+  renderBoard();
+}
+
+function renderBoard() {
+  let container = document.getElementById("sudoku");
+  container.innerHTML = "";
+  board.forEach((row) => {
+    let rows = document.createElement("div");
+    rows.setAttribute("class", "row");
+    row.forEach((col) => {
+      let column = document.createElement("input");
+      column.value = col;
+      rows.append(column);
+    });
+    container.append(rows);
+  });
+}
+
+window.onload = () => {
+  renderBoard();
+  let btn = document.getElementById("solve");
+  btn.addEventListener("click", solveB);
+};
