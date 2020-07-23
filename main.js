@@ -1,9 +1,13 @@
 const sudoku = new Sudoku();
 
-const board = sudoku.defaultBoard;
+let board = sudoku.defaultBoard;
 
-function solveB() {
-  solve(board);
+function solve() {
+  if (sudoku.solve(board)) {
+    console.log("true");
+  } else {
+    console.log("flase");
+  }
   renderBoard();
 }
 
@@ -22,8 +26,16 @@ function renderBoard() {
   });
 }
 
+function newGame() {
+  board = sudoku.makeBoard();
+  sudoku.jumbel(board, 10);
+  renderBoard();
+}
+
 window.onload = () => {
   renderBoard();
   let btn = document.getElementById("solve");
-  btn.addEventListener("click", solveB);
+  btn.addEventListener("click", solve);
+  let newSudoku = document.getElementById("newSudoku");
+  newSudoku.addEventListener("click", newGame);
 };

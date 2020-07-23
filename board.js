@@ -24,80 +24,102 @@ class Sudoku {
     }
     return this.board;
   }
-}
-let solve = async (matrix) => {
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix.length; j++) {
-      if (matrix[i][j] == 0) {
-        for (let k = 1; k < 10; k++) {
-          if (validate(i, j, k, matrix)) {
-            matrix[i][j] = k;
-            if (solve(matrix)) {
-              return true;
-            } else {
-              matrix[i][j] = 0;
+
+  solve(matrix) {
+    for (let i = 0; i < matrix.length; i++) {
+      for (let j = 0; j < matrix.length; j++) {
+        if (matrix[i][j] == 0) {
+          for (let k = 1; k < 10; k++) {
+            if (this.validate(i, j, k, matrix)) {
+              matrix[i][j] = k;
+              // await this.sleep(10);
+              // renderBoard();
+              if (this.solve(matrix)) {
+                return true;
+              } else {
+                matrix[i][j] = 0;
+              }
             }
           }
+          return false;
         }
-        return false;
-      } else {
-        renderBoard(matrix);
       }
     }
-  }
-  return true;
-};
-
-function validate(i, j, k, matrix) {
-  if (
-    checkRow(i, k, matrix) &&
-    checkCol(j, k, matrix) &&
-    checkSubMatrix(i, j, k, matrix)
-  ) {
     return true;
   }
-  return false;
-}
 
-async function checkRow(row, num, matrix) {
-  for (let i = 0; i < 9; i++) {
-    if (matrix[row][i] == num) {
-      await sleep(100);
-      console.log(num);
-      return false;
-    }
-  }
-  return true;
-}
-
-function checkCol(col, num, matrix) {
-  for (let i = 0; i < 9; i++) {
-    if (matrix[i][col] == num) {
-      return false;
-    }
-  }
-  return true;
-}
-
-function checkSubMatrix(row, col, num, matrix) {
-  for (var x = 3 * Math.floor(row / 3); x < 3 * Math.floor(row / 3) + 3; x++) {
-    for (
-      var y = 3 * Math.floor(col / 3);
-      y < 3 * Math.floor(col / 3) + 3;
-      y++
+  validate(i, j, k, matrix) {
+    if (
+      this.checkRow(i, k, matrix) &&
+      this.checkCol(j, k, matrix) &&
+      this.checkSubMatrix(i, j, k, matrix)
     ) {
-      if (matrix[x][y] == num) {
+      return true;
+    }
+    return false;
+  }
+
+  checkRow(row, num, matrix) {
+    for (let i = 0; i < 9; i++) {
+      if (matrix[row][i] == num) {
         return false;
       }
     }
+    return true;
   }
-  return true;
-}
 
-let sleep = (time) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, time);
-  });
-};
+  checkCol(col, num, matrix) {
+    for (let i = 0; i < 9; i++) {
+      if (matrix[i][col] == num) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  checkSubMatrix(row, col, num, matrix) {
+    for (
+      var x = 3 * Math.floor(row / 3);
+      x < 3 * Math.floor(row / 3) + 3;
+      x++
+    ) {
+      for (
+        var y = 3 * Math.floor(col / 3);
+        y < 3 * Math.floor(col / 3) + 3;
+        y++
+      ) {
+        if (matrix[x][y] == num) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  jumbel(board, time) {
+    while (time > 0) {
+      let i = this.random();
+      let j = this.random();
+      if (board[i][j] == 0) {
+        let k = this.random();
+        if (this.validate(i, j, k, board)) {
+          board[i][j] = k;
+          time--;
+        }
+      }
+    }
+    return board;
+  }
+
+  random() {
+    return Math.floor(Math.random() * 9);
+  }
+
+  sleep = (time) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, time);
+    });
+  };
+}
