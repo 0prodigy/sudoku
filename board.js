@@ -25,7 +25,7 @@ class Sudoku {
     return this.board;
   }
 }
-function solve(matrix) {
+let solve = async (matrix) => {
   for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix.length; j++) {
       if (matrix[i][j] == 0) {
@@ -40,11 +40,13 @@ function solve(matrix) {
           }
         }
         return false;
+      } else {
+        renderBoard(matrix);
       }
     }
   }
   return true;
-}
+};
 
 function validate(i, j, k, matrix) {
   if (
@@ -57,9 +59,11 @@ function validate(i, j, k, matrix) {
   return false;
 }
 
-function checkRow(row, num, matrix) {
+async function checkRow(row, num, matrix) {
   for (let i = 0; i < 9; i++) {
     if (matrix[row][i] == num) {
+      await sleep(100);
+      console.log(num);
       return false;
     }
   }
