@@ -61,8 +61,8 @@ body {
   outline: none;
 }
 .sudoku-container input.highlight {
-  background-color: #29b6f6;
-  border-color: #29b6f6;
+  background-color: #73d24d;
+  border-color: #73d24d;
 }
 .sudoku-container input.disabled {
   cursor: not-allowed;
@@ -70,8 +70,8 @@ body {
   border-color: #4c9689;
 }
 .sudoku-container input.disabled.highlight {
-  background-color: #29b6f6;
-  border-color: #29b6f6;
+  background-color: #73d24d;
+  border-color: #73d24d;
 }
 
 .sudoku-container .invalid {
@@ -82,7 +82,7 @@ body {
 }
 
 .sudoku-container.valid-matrix {
-  border-color: #4c9689;
+  border-color: #73d24d;
 }
 
 .row {

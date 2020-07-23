@@ -3,10 +3,11 @@ const sudoku = new Sudoku();
 let board = sudoku.defaultBoard;
 
 function solve() {
+  let container = document.querySelector(".sudoku-container");
   if (sudoku.solve(board)) {
-    console.log("true");
+    container.classList.add("valid-matrix");
   } else {
-    console.log("flase");
+    container.classList.add("invalid");
   }
   renderBoard();
 }
@@ -19,6 +20,7 @@ function renderBoard() {
     rows.setAttribute("class", "row");
     row.forEach((col) => {
       let column = document.createElement("input");
+      // await sudoku.sleep(100);
       column.value = col;
       rows.append(column);
     });
