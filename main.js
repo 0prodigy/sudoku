@@ -9,7 +9,7 @@ function solve() {
   } else {
     container.classList.add("invalid");
   }
-  renderBoard();
+  renderBoard("solving");
 }
 
 function renderBoard(status) {
@@ -42,7 +42,7 @@ function newGame() {
 }
 
 window.onload = () => {
-  renderBoard();
+  renderBoard("initial");
   let btn = document.getElementById("solve");
   btn.addEventListener("click", solve);
   let newSudoku = document.getElementById("newSudoku");
