@@ -61,8 +61,8 @@ body {
   outline: none;
 }
 .sudoku-container input.highlight {
-  background-color: #73d24d;
-  border-color: #73d24d;
+  background-color: #4c9689;
+  border-color: #4c9689;
 }
 .sudoku-container input.disabled {
   cursor: not-allowed;

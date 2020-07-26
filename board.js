@@ -25,16 +25,16 @@ class Sudoku {
     return this.board;
   }
 
-  solve(matrix) {
+  async solve(matrix) {
     for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j < matrix.length; j++) {
         if (matrix[i][j] == 0) {
           for (let k = 1; k < 10; k++) {
             if (this.validate(i, j, k, matrix)) {
               matrix[i][j] = k;
-              // await this.sleep(10);
-              // renderBoard();
-              if (this.solve(matrix)) {
+              await this.sleep(100);
+              renderBoard("solving");
+              if (await this.solve(matrix)) {
                 return true;
               } else {
                 matrix[i][j] = 0;

@@ -12,7 +12,7 @@ function solve() {
   renderBoard();
 }
 
-function renderBoard() {
+function renderBoard(status) {
   let container = document.getElementById("sudoku");
   container.innerHTML = "";
   board.forEach((row) => {
@@ -21,7 +21,14 @@ function renderBoard() {
     row.forEach((col) => {
       let column = document.createElement("input");
       // await sudoku.sleep(100);
+
       column.value = col;
+      status == "solving"
+        ? col
+          ? col
+          : column.setAttribute("class", "highlight")
+        : col;
+
       rows.append(column);
     });
     container.append(rows);
